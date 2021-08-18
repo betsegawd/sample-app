@@ -46,6 +46,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "watch": false,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
