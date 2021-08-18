@@ -43,10 +43,10 @@ jobs:
           npm ci
       - name: Build
         run: |
-          npm run build --prod
+          npm run build -- --prod
       - name: Lint
         run: |
           npm run lint
       - name: Test
         run: |
-          npm run test --browsers ChromeHeadless
+          npm run test -- --prod
