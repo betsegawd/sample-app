@@ -8,30 +8,29 @@ on:
 
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
-  
+
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [10.x, 12.x]
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - name: Setup node version ${{ matrix.node-version }}
-      - uses: actions/setup-node@v1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix,node-version }}   
+          node-version: ${{ matrix.node-version }}
+
       - name: Cache node modules
         id: cache-nodemodules
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
-        # caching node_modules
+          # caching node_modules
           path: node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
